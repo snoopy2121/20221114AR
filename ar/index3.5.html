@@ -1,0 +1,72 @@
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+        <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
+        <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
+        <script src="index3.js"></script>
+        <link rel="stylesheet" href="index3.css">
+      </head>
+      <body>
+        <a-scene
+        vr-mode-ui="enabled: false"
+        embedded
+        arjs="sourceType: webcam; debugUIEnabled: false;"
+        >
+            <!--<img id="kyubi" class="kyubi" src="./0-13.png">-->
+            <a-assets>
+                <a-asset-items id="dragon" src="./ARSkun1.obj" ></a-asset-items>
+                <a-assets-items id="mtl" src="./ARSkun1.mtl"></a-assets-items>
+              </a-assets>
+            <a-camera gps-camera rotation-reader> </a-camera>
+            <!--<a-entity highlight>
+                <a-entity position="0 1.6 -2.5">
+                    <a-entity material="src: #kyubi" mixin="poster"></a-entity>
+                </a-entity>
+            </a-entity>-->
+            <!--<a-image
+                class="#kyubi"
+                src="#kyubi"
+                position="0 1.6 -2.5"
+                ></a-image>-->
+            <a-entity material="src: #dona" mixin="poster"></a-entity>
+                <a-image
+            id="id4"
+                class="#kyu"
+                src="./kabotya.jpg"
+                position="10 1.6 -8"
+                gps-entity-place="latitude:36.1445017902298; longitude: 139.38237102698827;"
+                ></a-image>
+            <a-obj-model
+                src="#dragon"
+                mtl="#mtl"
+                scale="0.01,0.01,0.01"
+                position="10 -5 -10.0"
+                gps-entity-place="latitude:36.1445017902298; longitude: 139.38237102698827;"
+                
+            ></a-obj-model>
+        </a-scene>
+        <div style="position: fixed; bottom: 15px; ">
+           
+        </div>
+        <!--<div class="koni" id="koni">konitiwa</div>-->
+        <script src="index3.js"></script>
+      </body>
+
+      <script>
+        /*window.addEventListener('load', () => {
+          const el = document.querySelector('[gps-entity-place]');
+          el.addEventListener('gps-entity-place-update-positon', (event) => {
+            if(event.detail.distance < 100) {
+              el.setAttribute('material');
+            } else {
+              el.setAttribute('material');
+            }
+            distanceMsg.style.display = 'none';
+            message.style.display = 'block';
+          });
+        });*/
+    </script>
+</html>
+

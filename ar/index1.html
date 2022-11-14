@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Location-based AR.js demo</title>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
+    <!--<a-asset-item id="obj" src="./ARS君green.obj"></a-asset-item>   
+    <a-asset-item id="mtl" src="./ARS君green.mtl"></a-asset-item> -->
+
+    
+    <!--<video id="video_namahage" src="./sample.mp4" loop="true"></video>-->
+
+
+    <style>
+      #message {
+        position: fixed;
+        z-index: 10;
+        left: 5%;
+        bottom: 30px;
+        width: 90%;
+        padding: 5%;
+        
+        font-weight: bold;
+        
+        border-radius: 20px;
+        border: 3px solid #fff;
+        display: none;
+      }
+      h3{
+        position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    font-size:30px();
+    color: white;
+      }
+    </style>
+    
+
+
+
+  </head>
+  <!--<meta http-equiv="refresh" content="50;URL=http://localhost:8080/AR/sample/box.html">-->
+  <body style="margin: 0; overflow: hidden;">
+    <div id="distance"></div>
+    <div id="message">
+      あいうえお
+    </div>
+
+    <a-scene
+      vr-mode-ui="enabled: false"
+      embedded
+      arjs="sourceType: webcam; debugUIEnabled: false;"
+    >
+    <div style="position: fixed; display: block; bottom: 5%; margin-left: 2%; z-index: 5;">
+      <button onclick="ano()">botan</button>
+    </div>
+    <img id="kabo" class="kabo" src="./kabotya.jpg">
+      <!--<a-box
+        gps-entity-place="latitude:36.1445017902298; longitude: 139.38237102698827;"
+        scale="30 30 30"
+      ></a-box>
+      <a-obj-model id="box"
+        src="#obj"
+        mtl="#mtl"
+        scale="0.15 0.15 0.15"
+        position="-4 2 -4">-->
+        <!--<h3>  平安時代末期から鎌倉時代初めにかけて<br>  活躍した熊谷郷の武士です。</h3>-->
+      </a-obj-model>
+      <a-entity posion="0.5 2.5 -1">
+      
+        </a-entity>
+        <a-image 
+        class="#kabo"
+        src="#kabo"
+        posion="0.5 1.5 -1"
+        
+        ></a-image>
+      <a-camera gps-camera rotation-reader> </a-camera>
+    </a-scene>
+    
+
+   <script>
+      /*window.addEventListener('load', () => {
+        const el = document.querySelector('[gps-entity-place]');
+        el.addEventListener('gps-entity-place-update-positon', (event) => {
+          if(event.detail.distance < 100) {
+            el.setAttribute('material');
+          } else {
+            el.setAttribute('material');
+          }
+          distanceMsg.style.display = 'none';
+          message.style.display = 'block';
+        });
+      });*/
+
+      //window.addEventListener('load', function () {
+        /*const el = document.querySelector('[gps-entity-place]');
+        const distanceMsg = document.getElementById('distance');
+        const message = document.getElementById('message');*/
+        //el.addEventListener('gps-entity-place-update-positon', (event) => {
+        function ano(){
+        const el = document.querySelector('[gps-entity-place]');
+        const distanceMsg = document.getElementById('distance');
+        const message = document.getElementById('message');
+        console.log("koko");
+        el.addEventListener('gps-entity-place-update-positon', (event) => {
+            console.log("susi");
+          distanceMsg.textContent = `あと${event.detail.distance}m`;
+          if(event.detail.distance <= 30) {
+            // 30m以下で明るくする、メッセージ表示、距離非表示
+            //directionLight.setAttribute('intensity',1);
+            //ambientLight.setAttribute('intensity',1);
+            distanceMsg.style.display = 'none';
+            console.log("aiueo");
+            message.style.display = 'block';
+          
+          }else if(event.detail.distance <= 50) {
+            console.log("50");
+            // 50m以下で近づくほど明るくする、メッセージ非表示、距離表示
+            directionLight.setAttribute('intensity',1 - event.detail.distance / 50);
+            ambientLight.setAttribute('intensity',1 - event.detail.distance / 50);
+            distanceMsg.style.display = 'block';
+            message.style.display = 'none';
+          } else {
+            // 50mより離れると、明るさ0、メッセージ非表示、距離表示
+            
+            //directionLight.setAttribute('intensity',0);
+            //ambientLight.setAttribute('intensity',0);
+            distanceMsg.style.display = 'block';
+            message.style.display = 'none';
+            console.log(event.detail.distance);
+          }
+        }
+        )};
+        //});
+      //});
+    
+      
+    </script>
+  </body>
+</html>
